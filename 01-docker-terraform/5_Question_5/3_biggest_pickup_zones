@@ -1,0 +1,8 @@
+SELECT "Zone",
+	sum(total_amount) AS sum_of_total_amount
+FROM green_taxi_trips
+LEFT JOIN zones
+ON "PULocationID" = "LocationID"
+WHERE DATE(lpep_pickup_datetime) = MAKE_DATE(2019, 10, 18)
+GROUP BY 1
+HAVING sum(total_amount) > 13000;
