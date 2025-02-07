@@ -2,7 +2,7 @@ __Step 1__: Create docker-compose file to run kestra locally on port 8080.
 
 __Step 2__: Create project in google cloud. IAM - create service account.   Select cloud storage and set as admin. Select bigquery and set as Admin. Generate Key and use this JSON in Kestra kv pair.
 
-__Step 3__: Set-up key value pair in Kestra (in dataset when I gave zoomcamp-homework, it complained to have underscore and not '-')
+__Step 3__: Set-up key value pair in Kestra namespace (in dataset when I gave zoomcamp-homework, it complained to have underscore and not '-'). 01_gcp_kv.yaml here shows just the example of doing it using yaml. But it does not contain the real values as they are secret and should not be made public by pushing to the github.
 
 __Step 4__: Create GCP storage bucket and bigquery bucket
 
