@@ -21,12 +21,12 @@ select
     fhv.pickup_datetime,
     fhv.dropoff_datetime,
     timestamp_diff(fhv.dropoff_datetime, fhv.pickup_datetime, second)as trip_duration_sec,
-    fhv.pulocationid as pickup_locationid,
+    fhv.pickup_locationid as pickup_locationid,
     pickup_zone.zone as pickup_zone, 
-    fhv.dolocationid as dropoff_locationid,
+    fhv.dropoff_locationid as dropoff_locationid,
     dropoff_zone.zone as dropoff_zone
 from fhv_tripdata as fhv
 inner join dim_zones as pickup_zone
-on fhv.PUlocationID = pickup_zone.locationid
+on fhv.pickup_locationid = pickup_zone.locationid
 inner join dim_zones as dropoff_zone
-on fhv.DOlocationID = dropoff_zone.locationid
+on fhv.dropoff_locationid = dropoff_zone.locationid
