@@ -13,7 +13,7 @@ dim_zones as
 (
     select *
     from {{ ref('dim_zones')}}
-    where borough != 'Unkown'
+    where borough != 'Unknown'
 )
 select
     extract(year from fhv.pickup_datetime) as year,
