@@ -18,11 +18,11 @@ trip_duration_percentile_calc as
     and year = 2019
     and month = 11
 )
-select 
+select distinct
   pickup_zone, 
   pickup_locationid, 
   dropoff_zone, 
   dropoff_locationid, 
   trip_duration_sec_p90
 from trip_duration_percentile_calc
-
+order by pickup_zone, trip_duration_sec_p90 DESC
