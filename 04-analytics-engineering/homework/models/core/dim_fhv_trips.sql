@@ -26,7 +26,7 @@ select
     fhv.dolocationid as dropoff_locationid,
     dropoff_zone.zone as dropoff_zone
 from fhv_tripdata as fhv
-left join dim_zones as pickup_zone
+inner join dim_zones as pickup_zone
 on fhv.PUlocationID = pickup_zone.locationid
-left join dim_zones as dropoff_zone
+inner join dim_zones as dropoff_zone
 on fhv.DOlocationID = dropoff_zone.locationid
