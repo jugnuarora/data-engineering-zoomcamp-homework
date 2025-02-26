@@ -131,6 +131,9 @@ from row_number_assigned
 where rn=2
 ````
 
+The `answer`is:
+
+`LaGuardia Airport, Chinatown, Garment District`
 
 # Pre-Homework set-up
 __Step 1:__ Create a GCP Project `DBT-Homework`
