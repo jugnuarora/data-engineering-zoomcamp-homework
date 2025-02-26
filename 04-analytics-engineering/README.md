@@ -1,4 +1,6 @@
-# Homework
+# Homework 
+
+The complete dbt repository is in folder [homework](./homework/)
 
 
 __Question 1__
