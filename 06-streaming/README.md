@@ -54,7 +54,7 @@ ORDER BY 5 DESC
 LIMIT 10;
 ````
 
-The first entry is with pu_location_id = 95 and do_location_id = 95 with streak count as 44.
+The first entry is with __pu_location_id = 95 and do_location_id = 95 with streak count as 44.__
 
 Let's verify it. 
 I ran below query on the green_tripdata present in Bigquery:
@@ -67,7 +67,7 @@ ORDER BY lpep_dropoff_datetime;
 ````
 And Checked for the number of trips that were within 5 minutes range and it was indeed 44.
 
-95 location id is Queens borough and Forest Hills zone.
+__95 location id is Queens borough and Forest Hills zone.__
 
 
 
