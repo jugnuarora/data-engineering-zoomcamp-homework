@@ -6,7 +6,8 @@ _Question 1:_ To get into redpanda container execute this:
 `docker exec -it redpanda-1 bash` 
 `rpk version`
 
-`Answer: 
+Answer: 
+```
 Version:     v24.2.18
 Git ref:     f9a22d4430
 Build date:  2025-02-14T12:59:41Z
@@ -14,13 +15,18 @@ OS/Arch:     linux/arm64
 Go version:  go1.23.1
 
 Redpanda Cluster
-  node-1  v24.2.18 - f9a22d443087b824803638623d6b7492ec8221f9`
+  node-1  v24.2.18 - f9a22d443087b824803638623d6b7492ec8221f9
+```
+
 
 _Question 2:_ 
 `rpk topic create green-trips`
 Answer:
+````
 TOPIC        STATUS
 green-trips  OK
+````
+
 
 _Question 3:_
 Create a python script with the given code. The answer is `True`
