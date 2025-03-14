@@ -61,6 +61,20 @@ def log_aggregation():
         aggregated_table = create_events_aggregated_sink(t_env)
 
         t_env.execute_sql(f"""
+        CREATE TEMPORARY VIEW cleaned_events AS 
+        SELECT 
+            PULocationID, 
+            DOLocationID, 
+            lpep_pickup_datetime, 
+            lpep_dropoff_datetime, 
+            COALESCE(NULLIF(passenger_count, ''), 0) AS passenger_count, 
+            trip_distance, 
+            tip_amount, 
+            event_watermark
+        FROM {source_table};
+        """)
+
+        t_env.execute_sql(f"""
         INSERT INTO {aggregated_table}
         SELECT
             PULocationID AS pu_location_id,

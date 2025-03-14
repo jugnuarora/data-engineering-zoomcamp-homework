@@ -28,7 +28,11 @@ def main():
 
         for row in reader:
             # Each row will be a dictionary keyed by the CSV header
-            message = {key: row[key] for key in columns_to_keep if key in row}
+            #message = {key: row[key] for key in columns_to_keep if key in row}
+            message = {key: (int(row[key]) if key == "passenger_count" and row[key].strip().isdigit() else
+            0 if key == "passenger_count" else  # Convert empty passenger_count to 0
+            float(row[key]) if key in ["trip_distance", "tip_amount"] and row[key].strip() else
+            row[key]) for key in columns_to_keep if key in row}
             # Send data to Kafka topic "green-data"
             producer.send('green-data', value=message)
 
