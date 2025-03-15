@@ -35,7 +35,8 @@ def create_events_source_kafka(t_env):
             trip_distance DOUBLE,
             tip_amount DOUBLE,
             event_watermark AS lpep_dropoff_datetime,
-            WATERMARK FOR event_watermark AS lpep_dropoff_datetime - INTERVAL '5' SECOND
+            pickup_event_time AS lpep_pickup_datetime,
+            WATERMARK FOR pickup_event_time AS lpep_pickup_datetime - INTERVAL '5' SECOND
         ) WITH (
             'connector' = 'kafka',
             'properties.bootstrap.servers' = 'redpanda-1:29092',
@@ -79,8 +80,8 @@ def log_aggregation():
         SELECT
             PULocationID AS pu_location_id,
             DOLocationID AS do_location_id,
-            SESSION_START(event_watermark, INTERVAL '5' MINUTE) AS streak_start,
-            SESSION_END(event_watermark, INTERVAL '5' MINUTE) AS streak_end,
+            SESSION_START(pickup_event_time, INTERVAL '5' MINUTE) AS streak_start,
+            SESSION_END(pickup_event_time, INTERVAL '5' MINUTE) AS streak_end,
             count(*) AS total_distance
         FROM {source_table}
         --TABLE(
@@ -88,7 +89,7 @@ def log_aggregation():
         GROUP BY
             PULocationID,
             DOLocationID,
-           SESSION(event_watermark, INTERVAL '5' MINUTE)
+           SESSION(pickup_event_time, INTERVAL '5' MINUTE)
             --window_start,
             --window_end;
         """).wait()
